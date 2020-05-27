@@ -1,10 +1,10 @@
 
 @extends('layouts.app')
 
-@section('title', 'О блоге')
+@section('title', 'About')
+@section('header', 'About')
 
 @section('content')
-<h1>About blog</h1>
 <p>Experiments on Laravel with Hexlet</p>
 <h2>Our Team:</h2>
 <ul>
