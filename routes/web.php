@@ -13,10 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$team = [
+    ["name" => "Tom", "role" => "Programmer"],
+    ["name" => "Jane", "role" => "Manager"],
+    ["name" => "John", "role" => "CEO"]
+];
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/about', function () {
-    return view('about');
+Route::get('/about', function () use ($team) {
+    return view('about', ['team' => $team]);
+});
+
+Route::get('/articles', function () {
+    return view('articles');
 });
