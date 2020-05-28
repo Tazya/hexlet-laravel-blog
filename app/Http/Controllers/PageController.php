@@ -13,7 +13,7 @@ class PageController extends Controller
             ["name" => "Jane", "role" => "Manager"],
             ["name" => "John", "role" => "CEO"]
         ];
-        
-        return view('about', ['team' => $team]);
+
+        return view('page.about', ['team' => $team]);
     }
 }
