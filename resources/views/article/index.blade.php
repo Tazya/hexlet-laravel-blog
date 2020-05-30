@@ -4,6 +4,9 @@
 @section('header', 'Articles')
 
 @section('content')
+    @if ($flashMessage)
+        <div style="color: lightgreen">{{ $flashMessage }}</div>
+    @endif
     @foreach ($articles as $article)
     <div style="margin: 20px; padding: 10px; border: 1px solid #ccc">
         <a href="{{ route('articles.show', $article->id) }}"><h2>{{ $article->name }}</h2></a>
