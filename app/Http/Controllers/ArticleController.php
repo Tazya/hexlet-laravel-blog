@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Http\Requests\StoreArticle;
 
 class ArticleController extends Controller
 {
@@ -27,18 +28,34 @@ class ArticleController extends Controller
         return view('article.create', compact('article'));
     }
 
-    public function store(Request $request)
+    public function store(StoreArticle $request)
     {
-        $data = $this->validate($request, [
-            'name' => 'required|unique:articles',
-            'body' => 'required|min:1000',
-        ]);
+        $data = $request->validated();
 
         $article = new Article();
         $article->fill($data);
         $article->save();
         
         $request->session()->flash('articleStatus', 'Article has been added!');
+        return redirect()
+            ->route('articles.index');
+    }
+
+    public function edit($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('article.edit', compact('article'));
+    }
+
+    public function update(StoreArticle $request, $id)
+    {
+        $article = Article::findOrFail($id);
+        $data = $request->validated();
+
+        $article->fill($data);
+        $article->save();
+
+        $request->session()->flash('articleStatus', 'Article has been updated!');
         return redirect()
             ->route('articles.index');
     }

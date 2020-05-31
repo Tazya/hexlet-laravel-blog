@@ -25,5 +25,9 @@ Route::get('/articles/create', 'ArticleController@create')
     ->name('articles.create');
 Route::post('/articles', 'ArticleController@store')
     ->name('articles.store');
+Route::get('/articles/{id}/edit', 'ArticleController@edit')
+    ->name('articles.edit');
 Route::get('/articles/{id}', 'ArticleController@show')
-  ->name('articles.show');
+    ->name('articles.show');
+Route::patch('/articles/{id}', 'ArticleController@update')
+    ->name('articles.update');
